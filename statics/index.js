@@ -9,43 +9,6 @@ function addAlpha(color, opacity) {
     return color + _opacity.toString(16).toUpperCase();
 }
 
-// var colors = {
-//     0: ,
-//     1: ,
-//     2: ,
-//     3: ,
-//     4: ,
-//     5: ,
-//     6: ,
-//     7: ,
-//     8: ,
-//     9: ,
-//     10: ,
-//     11: ,
-//     12: ,
-//     13: ,
-//     14: ,
-//     15: ,
-//     16: ,
-//     17: ,
-//     18: ,
-//     19: ,
-//     20: ,
-//     21: ,
-//     22: ,
-//     23: ,
-//     24: ,
-//     25: ,
-//     26: ,
-//     27: ,
-//     28: ,
-//     29: ,
-//     30: ,
-//     31: ,
-//     32: '#20DA00',
-// }
-
-
 window.addEventListener('load', function() {
     grid_table.innerHTML += `
         <tr>
@@ -122,7 +85,6 @@ function get_grid(add_fixed=false) {
         for (var j = 0; j < 10; j++) {
             var item = document.querySelector('#grid .r' + i + ' .i' + j);
             if (item.classList.contains('on')) {
-
                 if (add_fixed) {
                     item.classList.add('fixed');
                 }
@@ -158,19 +120,21 @@ document.querySelector('#send').addEventListener('click', function() {
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     xhr.setRequestHeader('X-CSRFToken', csrf_token);
 
-    xhr.send(JSON.stringify({'grid': get_grid(add_fixed=true), 'ships': get_ships()}));
-    console.log(xhr.response)
-    xhr.onload = function() {
-        var resp = JSON.parse(xhr.response);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var resp = JSON.parse(this.responseText);
 
-        for (var i = 0; i < 10; i++) {
-            let row = [];
-            for (var j = 0; j < 10; j++) {
-                var item = document.querySelector('#grid .r' + i + ' .i' + j);
-                if (!item.classList.contains('on')) {
-                    item.setAttribute('color', addAlpha(pr_color, (resp[i][j] / 32)));
+            for (var i = 0; i < 10; i++) {
+                for (var j = 0; j < 10; j++) {
+                    var item = document.querySelector('#grid .r' + i + ' .i' + j);
+                    if (!item.classList.contains('on')) {
+                        item.setAttribute('style', 'background: #' + addAlpha(pr_color, (resp.grid[i][j] / 32)));
+                    }
                 }
             }
         }
     };
+
+    xhr.send(JSON.stringify({'grid': get_grid(add_fixed=true), 'ships': get_ships()}));
 });
+
