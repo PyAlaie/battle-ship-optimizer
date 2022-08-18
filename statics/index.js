@@ -124,7 +124,7 @@ function get_grid(add_fixed=false) {
                 if (add_fixed) {
                     item.classList.add('fixed');
                 }
-                
+
                 row.push(1);
             } else {
                 row.push(0);
