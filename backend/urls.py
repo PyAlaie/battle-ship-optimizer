@@ -1,14 +1,18 @@
-from django.contrib import admin
 from django.urls import path
 from django.http import HttpResponse
+from django.shortcuts import render
 
-def the_ultimate_function(request):
-    data = request.POST
+def home(request):
+    return render(request, 'index.html')
+
+def prosses_data(request):
+    data = request.GET
     grid = data.get('grid')
     ships = data.get('ships')
-
-    return HttpResponse('hello')
+    print(data)
+    return HttpResponse('sada')
 
 urlpatterns = [
-    path('', the_ultimate_function)
+    path('', home),
+    path('api/', prosses_data)
 ]

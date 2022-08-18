@@ -105,9 +105,8 @@ function get_ships() {
 
 document.querySelector('#send').addEventListener('click', function() {
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/', true);
+    xhr.open('POST', 'api/', true);
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-  
+
     xhr.send(JSON.stringify({'grid': get_grid(), 'ships': get_ships()}));
 });
-
