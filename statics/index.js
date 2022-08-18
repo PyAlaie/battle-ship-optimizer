@@ -9,42 +9,6 @@ function addAlpha(color, opacity) {
     return color + _opacity.toString(16).toUpperCase();
 }
 
-// var colors = {
-//     0: ,
-//     1: ,
-//     2: ,
-//     3: ,
-//     4: ,
-//     5: ,
-//     6: ,
-//     7: ,
-//     8: ,
-//     9: ,
-//     10: ,
-//     11: ,
-//     12: ,
-//     13: ,
-//     14: ,
-//     15: ,
-//     16: ,
-//     17: ,
-//     18: ,
-//     19: ,
-//     20: ,
-//     21: ,
-//     22: ,
-//     23: ,
-//     24: ,
-//     25: ,
-//     26: ,
-//     27: ,
-//     28: ,
-//     29: ,
-//     30: ,
-//     31: ,
-//     32: '#20DA00',
-// }
-
 window.addEventListener('load', function() {
     grid_table.innerHTML += `
         <tr>
@@ -164,7 +128,7 @@ document.querySelector('#send').addEventListener('click', function() {
                 for (var j = 0; j < 10; j++) {
                     var item = document.querySelector('#grid .r' + i + ' .i' + j);
                     if (!item.classList.contains('on')) {
-                        item.setAttribute('color', addAlpha(pr_color, (resp.grid[i][j] / 32)));
+                        item.setAttribute('style', 'background: #' + addAlpha(pr_color, (resp.grid[i][j] / 32)));
                     }
                 }
             }
