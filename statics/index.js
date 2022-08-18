@@ -161,7 +161,7 @@ document.querySelector('#send').addEventListener('click', function() {
     xhr.send(JSON.stringify({'grid': get_grid(add_fixed=true), 'ships': get_ships()}));
 
     xhr.onload = function() {
-        var resp = xhr.response.json();
+        var resp = JSON.parse(xhr.response);
 
         for (var i = 0; i < 10; i++) {
             let row = [];
