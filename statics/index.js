@@ -166,7 +166,7 @@ document.querySelector('#send').addEventListener('click', function() {
             for (var j = 0; j < 10; j++) {
                 var item = document.querySelector('#grid .r' + i + ' .i' + j);
                 if (!item.classList.contains('on')) {
-                    item.setAttribute('color', addAlpha(pr_color, (resp[i][j] / 32)));
+                    item.setAttribute('color', addAlpha(pr_color, (resp.grid[i][j] / 32)));
                 }
             }
         }
