@@ -158,15 +158,16 @@ document.querySelector('#send').addEventListener('click', function() {
   
     xhr.send(JSON.stringify({'grid': get_grid(add_fixed=true), 'ships': get_ships()}));
 
-    xhr.onload = function() {
-        var resp = JSON.parse(xhr.response);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var resp = JSON.parse(this.responseText);
 
-        for (var i = 0; i < 10; i++) {
-            let row = [];
-            for (var j = 0; j < 10; j++) {
-                var item = document.querySelector('#grid .r' + i + ' .i' + j);
-                if (!item.classList.contains('on')) {
-                    item.setAttribute('color', addAlpha(pr_color, (resp.grid[i][j] / 32)));
+            for (var i = 0; i < 10; i++) {
+                for (var j = 0; j < 10; j++) {
+                    var item = document.querySelector('#grid .r' + i + ' .i' + j);
+                    if (!item.classList.contains('on')) {
+                        item.setAttribute('color', addAlpha(pr_color, (resp.grid[i][j] / 32)));
+                    }
                 }
             }
         }
