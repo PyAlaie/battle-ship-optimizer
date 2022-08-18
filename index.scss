@@ -1,0 +1,62 @@
+html, body {
+    margin: 0;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+    height: 100vh;
+
+    #grid {
+        border-collapse: collapse;
+
+        td:not(.identifier) {
+            border: black solid 1px;
+        }
+
+        td:not(.identifier) {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            
+        }
+
+        td.on {
+            background: black;
+        }
+        
+        td.identifier {
+            width: 15px;
+        }
+    }
+
+    #ships {
+        margin-top: 2rem;
+        font-size: 2rem;
+        border-collapse: collapse;
+
+        td {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            user-select: none;
+            border: black solid 1px;
+        }
+
+        td.on {
+            background: rgb(255, 134, 134);
+        }
+    }
+
+    #send {
+        padding: .5rem 1rem;
+        background: rgb(112, 237, 237);
+        border-radius: .5rem;
+        margin-top: 2rem;
+        user-select: none;
+    }
+}

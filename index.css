@@ -1,0 +1,76 @@
+html, body {
+  margin: 0;
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.main #grid {
+  border-collapse: collapse;
+}
+
+.main #grid td:not(.identifier) {
+  border: black solid 1px;
+}
+
+.main #grid td:not(.identifier) {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+
+.main #grid td.on {
+  background: black;
+}
+
+.main #grid td.identifier {
+  width: 15px;
+}
+
+.main #ships {
+  margin-top: 2rem;
+  font-size: 2rem;
+  border-collapse: collapse;
+}
+
+.main #ships td {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: black solid 1px;
+}
+
+.main #ships td.on {
+  background: #ff8686;
+}
+
+.main #send {
+  padding: .5rem 1rem;
+  background: #70eded;
+  border-radius: .5rem;
+  margin-top: 2rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+/*# sourceMappingURL=index.css.map */
