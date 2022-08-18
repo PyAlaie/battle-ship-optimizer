@@ -152,7 +152,7 @@ function get_ships() {
 
 document.querySelector('#send').addEventListener('click', function() {
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/api', true);
+    xhr.open('POST', 'api/', true);
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     xhr.setRequestHeader('X-CSRFToken', csrf_token);
   
