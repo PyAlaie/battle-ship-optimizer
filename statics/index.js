@@ -122,7 +122,7 @@ function get_grid(add_fixed=false) {
         for (var j = 0; j < 10; j++) {
             var item = document.querySelector('#grid .r' + i + ' .i' + j);
             if (item.classList.contains('on')) {
-            
+
                 if (add_fixed) {
                     item.classList.add('fixed');
                 }
@@ -154,12 +154,12 @@ function get_ships() {
 
 document.querySelector('#send').addEventListener('click', function() {
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/api', true);
+    xhr.open('POST', 'api/', true);
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     xhr.setRequestHeader('X-CSRFToken', csrf_token);
-  
-    xhr.send(JSON.stringify({'grid': get_grid(add_fixed=true), 'ships': get_ships()}));
 
+    xhr.send(JSON.stringify({'grid': get_grid(add_fixed=true), 'ships': get_ships()}));
+    console.log(xhr.response)
     xhr.onload = function() {
         var resp = JSON.parse(xhr.response);
 
@@ -174,4 +174,3 @@ document.querySelector('#send').addEventListener('click', function() {
         }
     };
 });
-

@@ -8,7 +8,7 @@ SECRET_KEY = 'django-insecure-f4_-xaii$ha=cg2&4tsq-k2e#2h(bua^uznvmyyfzv6xh)%()+
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+# APPEND_SLASH=False
 
 # Application definition
 
