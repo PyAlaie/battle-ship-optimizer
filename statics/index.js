@@ -129,6 +129,7 @@ document.querySelector('#send').addEventListener('click', function() {
                     var item = document.querySelector('#grid .r' + i + ' .i' + j);
                     if (!item.classList.contains('on')) {
                         item.setAttribute('style', 'background: #' + addAlpha(pr_color, (resp.grid[i][j] / 32)));
+                        item.textContent = resp.grid[i][j]
                     }
                 }
             }
@@ -137,4 +138,3 @@ document.querySelector('#send').addEventListener('click', function() {
 
     xhr.send(JSON.stringify({'grid': get_grid(add_fixed=true), 'ships': get_ships()}));
 });
-

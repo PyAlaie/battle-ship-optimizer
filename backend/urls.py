@@ -21,8 +21,6 @@ def prosses_data(request):
         if ships[i] == 0:
             final_ships.append(ss[i])
 
-    print(final_ships)
-
     res = np.zeros((10,10))
 
     for ship in final_ships:
@@ -42,7 +40,7 @@ def prosses_data(request):
                 if 1 not in positions:
                     for i in range(ship):
                         res[row+i][col] = res[row+i][col] + 1
-    final_dict = {'grid': res}
+    final_dict = {'grid': res.tolist()}
     return HttpResponse(json.dumps(final_dict))
 
 urlpatterns = [
