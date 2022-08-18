@@ -1,6 +1,50 @@
 var grid = [];
 var ships = [4, 3, 3, 2, 2, 2];
 var grid_table = document.querySelector('#grid');
+var pr_color = "30D800";
+
+function addAlpha(color, opacity) {
+    // coerce values so ti is between 0 and 1.
+    var _opacity = Math.round(Math.min(Math.max(opacity || 1, 0), 1) * 255);
+    return color + _opacity.toString(16).toUpperCase();
+}
+
+// var colors = {
+//     0: ,
+//     1: ,
+//     2: ,
+//     3: ,
+//     4: ,
+//     5: ,
+//     6: ,
+//     7: ,
+//     8: ,
+//     9: ,
+//     10: ,
+//     11: ,
+//     12: ,
+//     13: ,
+//     14: ,
+//     15: ,
+//     16: ,
+//     17: ,
+//     18: ,
+//     19: ,
+//     20: ,
+//     21: ,
+//     22: ,
+//     23: ,
+//     24: ,
+//     25: ,
+//     26: ,
+//     27: ,
+//     28: ,
+//     29: ,
+//     30: ,
+//     31: ,
+//     32: '#20DA00',
+// }
+
 
 window.addEventListener('load', function() {
     grid_table.innerHTML += `
@@ -70,7 +114,7 @@ window.addEventListener('load', function() {
 });
 
 
-function get_grid() {
+function get_grid(add_fixed=false) {
     let grid = [];
 
     for (var i = 0; i < 10; i++) {
@@ -78,6 +122,11 @@ function get_grid() {
         for (var j = 0; j < 10; j++) {
             var item = document.querySelector('#grid .r' + i + ' .i' + j);
             if (item.classList.contains('on')) {
+            
+                if (add_fixed) {
+                    item.classList.add('fixed');
+                }
+                
                 row.push(1);
             } else {
                 row.push(0);
@@ -105,8 +154,24 @@ function get_ships() {
 
 document.querySelector('#send').addEventListener('click', function() {
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'api/', true);
+    xhr.open('POST', '/api', true);
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    xhr.setRequestHeader('X-CSRFToken', csrf_token);
+  
+    xhr.send(JSON.stringify({'grid': get_grid(add_fixed=true), 'ships': get_ships()}));
 
-    xhr.send(JSON.stringify({'grid': get_grid(), 'ships': get_ships()}));
+    xhr.onload = function() {
+        var resp = xhr.response.json();
+
+        for (var i = 0; i < 10; i++) {
+            let row = [];
+            for (var j = 0; j < 10; j++) {
+                var item = document.querySelector('#grid .r' + i + ' .i' + j);
+                if (!item.classList.contains('on')) {
+                    item.setAttribute('color', addAlpha(pr_color, (resp[i][j] / 32)));
+                }
+            }
+        }
+    };
 });
+

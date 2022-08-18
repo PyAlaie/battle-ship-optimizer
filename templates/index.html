@@ -1,5 +1,6 @@
-<!DOCTYPE html>
 {% load static %}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,6 +29,9 @@
         <div id="send">Send</div>
     </div>
 
+    <script>
+        var csrf_token = "{% csrf_token %}";
+    </script>
     <script src="{% static 'index.js' %}"></script>
 </body>
 </html>
