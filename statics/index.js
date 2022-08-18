@@ -45,6 +45,7 @@ function addAlpha(color, opacity) {
 //     32: '#20DA00',
 // }
 
+
 window.addEventListener('load', function() {
     grid_table.innerHTML += `
         <tr>
@@ -121,6 +122,7 @@ function get_grid(add_fixed=false) {
         for (var j = 0; j < 10; j++) {
             var item = document.querySelector('#grid .r' + i + ' .i' + j);
             if (item.classList.contains('on')) {
+            
                 if (add_fixed) {
                     item.classList.add('fixed');
                 }
