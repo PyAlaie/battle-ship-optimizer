@@ -155,8 +155,6 @@ document.querySelector('#send').addEventListener('click', function() {
     xhr.open('POST', 'api/', true);
     xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
     xhr.setRequestHeader('X-CSRFToken', csrf_token);
-  
-    xhr.send(JSON.stringify({'grid': get_grid(add_fixed=true), 'ships': get_ships()}));
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -172,5 +170,7 @@ document.querySelector('#send').addEventListener('click', function() {
             }
         }
     };
+
+    xhr.send(JSON.stringify({'grid': get_grid(add_fixed=true), 'ships': get_ships()}));
 });
 
